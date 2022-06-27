@@ -21,7 +21,7 @@ $routes->setDefaultController('Home');
 $routes->setDefaultMethod('index');
 $routes->setTranslateURIDashes(false);
 $routes->set404Override();
-$routes->setAutoRoute(true);
+$routes->setAutoRoute(false);
 
 /*
  * --------------------------------------------------------------------
@@ -32,6 +32,15 @@ $routes->setAutoRoute(true);
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
 $routes->get('/', 'Home::index');
+
+// Build Your First Application > Static Pages
+// 매뉴얼에서 표에 언급한 동작을 위해서, 아래 두, 세번째를 추가하였다.
+// 원래 되어야 하는데 설정이 잘못된건지는 확인이 필요하다.
+// 순서도 중요하다. 현재 네 번재 설정이 맨 위로 올라오면 다른 설정은 무시된다.
+$routes->get('pages', 'Pages::index');
+$routes->get('pages/view', 'Pages::view');
+$routes->get('pages/view/(:any)', 'Pages::view/$1');
+$routes->get('(:any)', 'Pages::view/$1');
 
 /*
  * --------------------------------------------------------------------
