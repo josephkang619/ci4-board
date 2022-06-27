@@ -33,6 +33,11 @@ $routes->setAutoRoute(false);
 // route since we don't have to scan directories.
 $routes->get('/', 'Home::index');
 
+// Build Your First Application > News Section
+$routes->match(['get', 'post'], 'news/create', 'News::create');
+$routes->get('news/(:segment)', 'News::view/$1');
+$routes->get('news', 'News::index');
+
 // Build Your First Application > Static Pages
 // 매뉴얼에서 표에 언급한 동작을 위해서, 아래 두, 세번째를 추가하였다.
 // 원래 되어야 하는데 설정이 잘못된건지는 확인이 필요하다.

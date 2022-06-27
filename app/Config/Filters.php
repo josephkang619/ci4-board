@@ -53,7 +53,15 @@ class Filters extends BaseConfig
      *
      * @var array
      */
-    public $methods = [];
+
+    /**
+     * In general, if you use $methods filters, you should disable auto-routing
+     * because auto-routing permits any HTTP method to access a controller.
+     * Accessing the controller with a method you don’t expect could bypass the filter.
+     */
+    public $methods = [
+        'post' => ['csrf']
+    ];
 
     /**
      * List of filter aliases that should run on any
